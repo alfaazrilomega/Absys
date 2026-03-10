@@ -3424,22 +3424,22 @@ Photo cols pulled -30vh upward; center card stays at 0 → depth contrast.
             });
             gsap.ticker.lagSmoothing(0, 0);
 
-            // 2. UX Preloader Logic & Spline Listener
+            // 2. UX Preloader Logic
             const preloader = document.getElementById("spline-preloader");
-            const splineWrapper = document.getElementById("hero-spline-container");
-            const splineViewer = document.getElementById("my-spline-viewer");
 
             // Freeze scrolling while the preloader is active!
-            // Essential for Nfinite Paper vibes.
             document.body.style.overflow = "hidden";
             lenis.stop();
 
-            // Reusable function to fire animations once 3D is loaded
+            // Reusable function to fire animations
             const initExperience = () => {
                 // Fade away preloader
                 if (preloader) {
                     preloader.style.opacity = '0';
-                    preloader.style.visibility = 'hidden';
+                    preloader.style.filter = 'blur(10px)';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 500);
                 }
 
                 // Unfreeze scroll
@@ -3447,11 +3447,6 @@ Photo cols pulled -30vh upward; center card stays at 0 → depth contrast.
                 lenis.start();
 
                 setTimeout(() => {
-                    // Reveal Spline
-                    if (splineWrapper) {
-                        splineWrapper.classList.add('is-loaded');
-                    }
-
                     // Fire GSAP Intro Tweens
                     gsap.from(".dm-text-container > *", {
                         y: 40, opacity: 0, duration: 1.2, delay: 0.3, stagger: 0.15, ease: "power3.out"
@@ -3482,16 +3477,8 @@ Photo cols pulled -30vh upward; center card stays at 0 → depth contrast.
                 }, 100);
             };
 
-            // 3. The Core Event Listener (Fires when Scene.splinecode hits 100%)
-            if (splineViewer) {
-                splineViewer.addEventListener("load", (e) => {
-                    console.log("3D Scene Fully Initialized", e);
-                    initExperience();
-                });
-            } else {
-                // Fallback if Spline is not present
-                setTimeout(initExperience, 500);
-            }
+            // Since Spline is removed, trigger experience immediately
+            setTimeout(initExperience, 500);
 
             // --- Discover Music Antigravity Animation ---
             const floatingBtn = document.getElementById("antigravity-btn");
