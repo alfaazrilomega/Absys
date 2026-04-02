@@ -1,0 +1,511 @@
+/* ============================================================
+   ABSYS — Hero-Section-Component.css
+   Hero section, Discover Music component, hero image layout
+   ============================================================ */
+
+/* ── UX Preloader ── */
+#spline-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-base);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.2s cubic-bezier(0.85, 0, 0.15, 1), visibility 1.2s;
+}
+
+.intro-asset-placeholder {
+    width: 120px;
+    height: auto;
+    margin-bottom: 2rem;
+    animation: pulse 2s infinite ease-in-out;
+    color: var(--text-primary);
+    text-align: center;
+    border: 1px dashed rgba(224, 221, 239, 0.3);
+    padding: 20px;
+}
+
+.loading-text {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(224, 221, 239, 0.6);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.95); }
+    50%       { opacity: 1;   transform: scale(1.05); }
+}
+
+/* ── Hero Section Wrapper ── */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: clamp(400px, 100vh, 1080px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Bottom fade-into-white gradient mask */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35vh;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(208, 161, 255, 0.15) 30%,
+            rgba(255, 255, 255, 0.8) 75%,
+            #ffffff 100%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* ── Split-Layout UI Layer ── */
+.hero-ui-layer {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+    pointer-events: none;
+}
+
+/* ── Left: headline block ── */
+.hero-headline {
+    flex: 0 0 50%;
+    transform: translateY(-12vh);
+}
+
+/* ── Right: subheadline + CTA ── */
+.hero-subcontent {
+    flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    padding-top: 35vh;
+}
+
+.hero-subcontent h2 {
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    line-height: 1.1;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtext {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 380px;
+    color: var(--text-primary);
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+
+/* ── Hero Right Image ── */
+.hero-image-right {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    width: 45%;
+    max-width: 600px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero-image-right img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    object-position: bottom right;
+}
+
+/* ── CTA Button ── */
+.cta-button {
+    pointer-events: auto;
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--text-primary);
+    border-radius: 50px;
+    color: var(--text-primary);
+    background: transparent;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    color: #fff;
+}
+
+/* ── GSAP Spline Wrapper (legacy, kept for structure) ── */
+.gsap-spline-wrapper {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: clamp(400px, 100vh, 1080px);
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 2s ease, transform 2s ease;
+}
+
+.gsap-spline-wrapper.is-loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ── Discover Music Component ── */
+.discover-wrap {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    pointer-events: none;
+    margin-top: 25vh;
+}
+
+.discover-wrap > * { pointer-events: auto; }
+
+.dm-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.dm-heading {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: #2c2c2c;
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+.dm-subtitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    line-height: 1.6;
+    color: #757575;
+    max-width: 480px;
+    margin: 0;
+}
+
+/* ── Discover Music Button ── */
+.dm-btn-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.dm-btn-stripes {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
+    background: repeating-linear-gradient(-10deg,
+            transparent,
+            transparent 3px,
+            rgba(100, 50, 220, 0.4) 3px,
+            rgba(100, 50, 220, 0.4) 4px);
+    border-radius: 999px;
+    z-index: 0;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+}
+
+.dm-btn {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #9b27b0 0%, #3f51b5 100%);
+    padding: 10px 10px 10px 32px;
+    border-radius: 99px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(63, 81, 181, 0.3);
+    gap: 24px;
+}
+
+.dm-btn-text {
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.dm-btn-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #1a1a1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dm-btn-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: #ffffff;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ── About Projects Section (Nivaro Style) ── */
+.about-projects-section {
+    background-color: var(--bg-base);
+    padding: clamp(60px, 10vh, 100px) clamp(1.5rem, 5%, 5rem) clamp(80px, 15vh, 150px);
+    position: relative;
+    z-index: 10;
+}
+
+.about-projects-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: clamp(2rem, 5vw, 4rem);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.about-projects-left {
+    flex: 0 0 62%;
+    position: sticky;
+    top: 120px;
+}
+
+.about-projects-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1.3rem, 3vw, 2.5rem);
+    line-height: 1.25;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 900px;
+}
+
+.about-projects-right {
+    flex: 0 0 33%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.about-project-card {
+    position: relative;
+    background: rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+}
+
+.about-project-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.about-project-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-project-card:hover .about-project-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.about-project-info {
+    padding: 20px;
+    background: #fff;
+}
+
+.about-project-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.about-project-info p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* ≤ 1024px — stack hero layout */
+@media (max-width: 1024px) {
+    .hero-ui-layer {
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 2rem;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .hero-headline,
+    .hero-subcontent {
+        flex: 0 0 100%;
+        width: 100%;
+        transform: none !important;
+        padding-top: 0 !important;
+        text-align: center;
+        align-items: center;
+    }
+
+    .hero-subtext {
+        margin: 0 auto 2rem;
+    }
+
+    .hero-image-right {
+        width: 55%;
+        right: 0;
+    }
+
+    .discover-wrap {
+        margin-top: 15vh;
+        align-items: center;
+        text-align: center;
+    }
+
+    .dm-text-container { align-items: center; }
+    .dm-subtitle       { text-align: center; }
+
+    /* About projects — stack */
+    .about-projects-container {
+        flex-direction: column;
+    }
+
+    .about-projects-left {
+        position: relative;
+        top: 0;
+        flex: none;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .about-projects-right {
+        flex: none;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}
+
+/* ≤ 768px */
+@media (max-width: 768px) {
+    .hero-section {
+        align-items: flex-start;
+    }
+
+    .hero-ui-layer {
+        padding: 0 1.25rem;
+        padding-top: 15vh;
+        padding-bottom: 15vh;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    .hero-headline {
+        text-align: left;
+    }
+
+    .dm-text-container { align-items: flex-start; }
+    .dm-subtitle       { text-align: left; }
+
+    .hero-image-right {
+        width: 80%;
+        right: 10%;
+        max-width: 450px;
+        opacity: 0.8;
+    }
+
+    .discover-wrap {
+        margin-top: 0;
+        align-items: flex-start;
+        text-align: left;
+        flex: 1; /* Expands to fill available space */
+        width: 100%; /* Ensures full width for right alignment */
+    }
+
+    .dm-btn-wrapper {
+        margin-top: auto; /* Pushes the button to the bottom edge defined by padding-bottom */
+        align-self: flex-end; /* Aligns the button to the right edge */
+    }
+}
+
+/* ≤ 640px — 1-col about grid */
+@media (max-width: 640px) {
+    .about-projects-right {
+        grid-template-columns: 1fr;
+    }
+
+    .about-projects-text {
+        font-size: clamp(1.2rem, 5vw, 1.8rem);
+    }
+}
+
+/* ≤ 480px — hero tweaks */
+@media (max-width: 480px) {
+    .hero-image-right {
+        width: 90%;
+        right: 5%;
+        opacity: 0.6;
+    }
+
+    .dm-btn {
+        padding: 8px 8px 8px 20px;
+        gap: 14px;
+    }
+
+    .dm-btn-icon {
+        width: 38px;
+        height: 38px;
+    }
+}
