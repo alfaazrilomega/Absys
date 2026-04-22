@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Rivage Travertine Dining Table â€” Sculptural Elegance for Modern Homes. ABSYS Agritek product page.">
+    <title>Rivage Travertine Dining Table | ABSYS</title>
+
+    <!-- Google Fonts: DM Sans + EB Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lenis Smooth Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+
+    <!-- Component CSS files -->
+    <link rel="stylesheet" href="public/assets/css/global.css">
+    <link rel="stylesheet" href="public/assets/css/components/Navbar-Component.css">
+    <link rel="stylesheet" href="public/assets/css/components/produk/ProductHero-Component.css">
+    <link rel="stylesheet" href="public/assets/css/components/produk/ProductDetail-Component.css">
+    <link rel="stylesheet" href="public/assets/css/components/Contact-Component.css">
+</head>
+
+<body>
+
+    <!-- â”€â”€ NAVBAR â”€â”€ -->
+    <!-- 1. Main Navbar (OROYA Layout) - Visible Left & Logo, Hidden Right -->
+    <header class="site-header theme-light" id="site-header">
+
+        <!-- Left nav group -->
+        <nav class="nav-group left" aria-label="Primary navigation left">
+            <a href="#beranda" class="nav-item">Beranda</a>
+            <a href="#produk" class="nav-item">Produk</a>
+            <a href="#harga" class="nav-item">Harga</a>
+        </nav>
+
+        <!-- Center logo (DO NOT MOVE â€” stays centered via grid) -->
+        <div class="logo">
+            <a href="/" aria-label="ABSYS Home">
+                <div class="logo-default">
+                    <img src="public/assets/img/Asset 2.svg" alt="ABSYS Icon" class="logo-icon">
+                    <img src="public/assets/img/Asset 3@2x.webp" alt="ABSYS Wordmark" class="logo-text">
+                </div>
+
+                <div class="logo-light-theme">
+                    <img src="public/assets/img/Asset 2.svg" alt="ABSYS Icon" class="logo-icon">
+                    <img src="public/assets/img/Asset 1@2x.webp" alt="ABSYS Wordmark" class="logo-text">
+                </div>
+            </a>
+        </div>
+
+        <!-- Right nav group (Hidden here, used for layout sizing only) -->
+        <nav class="nav-group right" style="opacity: 0; pointer-events: none;" aria-hidden="true">
+            <a href="#tentang" class="nav-item">Tentang</a>
+            <a href="#berita" class="nav-item">Berita</a>
+            <a href="#karir" class="nav-item">Karir</a>
+            <a href="#kontak" class="nav-item">Kontak</a>
+        </nav>
+
+        <!-- Hamburger button (mobile only — shown via CSS at ≤768px) -->
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav-overlay">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </header>
+
+    <!-- 2. Blend Navbar - Hidden Left & Logo, Visible Right with mix-blend-mode -->
+    <header class="site-header site-header-blend theme-light" id="site-header-blend"
+        style="pointer-events: none; z-index: 101;" aria-hidden="true">
+        <!-- Left nav group -->
+        <nav class="nav-group left" style="opacity: 0; visibility: hidden;">
+            <a href="#beranda" class="nav-item">Beranda</a>
+            <a href="#produk" class="nav-item">Produk</a>
+            <a href="#harga" class="nav-item">Harga</a>
+        </nav>
+
+        <!-- Center logo -->
+        <div class="logo" style="opacity: 0; visibility: hidden;">
+            <a href="/" aria-label="ABSYS Home">
+                <div class="logo-default">
+                    <img src="public/assets/img/Asset 2.svg" alt="ABSYS Icon" class="logo-icon">
+                    <img src="public/assets/img/Asset 3@2x.webp" alt="ABSYS Wordmark" class="logo-text">
+                </div>
+
+                <div class="logo-light-theme">
+                    <img src="public/assets/img/Asset 2.svg" alt="ABSYS Icon" class="logo-icon">
+                    <img src="public/assets/img/Asset 1@2x.webp" alt="ABSYS Wordmark" class="logo-text">
+                </div>
+            </a>
+        </div>
+
+        <!-- Right nav group -->
+        <nav class="nav-group right" aria-label="Primary navigation right" style="pointer-events: auto;">
+            <a href="#tentang" class="nav-item">Tentang</a>
+            <a href="#berita" class="nav-item">Berita</a>
+            <a href="#karir" class="nav-item">Karir</a>
+            <a href="#kontak" class="nav-item">Kontak</a>
+        </nav>
+
+    </header>
+
+    <!-- MOBILE FULL-SCREEN NAV OVERLAY -->
+    <nav class="mobile-nav-overlay" id="mobile-nav-overlay" aria-label="Mobile navigation" aria-hidden="true">
+        <ul class="mobile-nav-list">
+            <li class="mobile-nav-item"><a href="#beranda" class="mobile-nav-link">Beranda</a></li>
+            <li class="mobile-nav-item"><a href="#produk" class="mobile-nav-link">Produk</a></li>
+            <li class="mobile-nav-item"><a href="#harga" class="mobile-nav-link">Harga</a></li>
+            <li class="mobile-nav-item"><a href="#tentang" class="mobile-nav-link">Tentang</a></li>
+            <li class="mobile-nav-item"><a href="#berita" class="mobile-nav-link">Berita</a></li>
+            <li class="mobile-nav-item"><a href="#karir" class="mobile-nav-link">Karir</a></li>
+            <li class="mobile-nav-item"><a href="#kontak" class="mobile-nav-link">Kontak</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <span class="mobile-nav-footer-label">&copy; 2025 ABSYS Agritek</span>
+            <div class="mobile-nav-footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- â”€â”€ PRODUCT HERO: Image Gallery / Carousel â”€â”€ -->
+    <section class="product-hero">
+        <img id="hero-bg-img" class="hero-bg-img" src="https://framerusercontent.com/images/sXpGa5SBIHzL1ZlluLzui0nhLvU.webp"
+            alt="Knobs Product Image">
+
+        <!-- Glass panel with 3 thumbnail cards -->
+        <div class="hero-glass-panel">
+            <!-- Left card -->
+            <div id="card-0" class="hero-thumb hero-thumb--left" data-slide="0" role="button"
+                aria-label="View VR Headset" tabindex="0">
+                <img src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp" alt="VR Headset">
+                <div class="thumb-inset"></div>
+            </div>
+
+            <!-- Center card (Active) -->
+            <div id="card-1" class="hero-thumb hero-thumb--center" data-slide="1" role="button" aria-label="View Knobs"
+                tabindex="0">
+                <img src="https://framerusercontent.com/images/sXpGa5SBIHzL1ZlluLzui0nhLvU.webp" alt="Knobs">
+                <div class="thumb-inset"></div>
+            </div>
+
+            <!-- Right card -->
+            <div id="card-2" class="hero-thumb hero-thumb--right" data-slide="2" role="button" aria-label="View Laptop"
+                tabindex="0">
+                <img src="https://framerusercontent.com/images/ruM84yQKYiTGK0mIWGzyalj01WQ.webp" alt="Laptop">
+                <div class="thumb-inset"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- â”€â”€ PRODUCT DETAIL â”€â”€ -->
+    <main>
+        <div class="product-detail">
+
+            <!-- Left: Product Info -->
+            <div class="product-info">
+                <h1 class="product-title">
+                    Rivage Travertine<br>
+                    Dining Table â€“<br>
+                    Sculptural<br>
+                    Elegance for<br>
+                    Modern Homes
+                </h1>
+
+                <!-- Why You'll Love It -->
+                <div class="product-section">
+                    <h2 class="product-section-title">Why You'll Love It</h2>
+                    <ul class="product-bullets">
+                        <li>A sculptural centrepiece defined by fluid contours and timeless materiality.</li>
+                        <li>Crafted from premium Italian travertine, Rivage celebrates organic form and textural
+                            richness. Its softly curved edges and wave-like base create a calm yet commanding presence,
+                            ideal for modern interiors seeking quiet sophistication.</li>
+                        <li>The honed stone surface is sealed for water resistance, offering everyday functionality
+                            without compromising on refinement.</li>
+                        <li>Perfect for homes that embrace uncluttered elegance, Rivage is more than a dining table â€“
+                            it's a design statement.</li>
+                    </ul>
+                </div>
+
+                <!-- Why Our Travertine Is Different -->
+                <div class="product-section">
+                    <h2 class="product-section-title">Why Our Travertine Is Different</h2>
+                    <p class="product-body">
+                        Not all travertine is created equal.<br><br>
+                        At CANCAN, we use premium ivory Italian travertine, carefully selected for its colour tones,
+                        fine texture, and natural elegance. Our stone maintains a refined, creamy aesthetic that
+                        elevates any space.<br><br>
+                        The result? A timeless surface that feels calm, clean, and quietly luxurious â€” exactly what your
+                        home deserves.
+                    </p>
+                </div>
+
+                <!-- What Sets Ours Apart -->
+                <div class="product-section">
+                    <h2 class="product-section-title">What Sets Ours Apart</h2>
+                    <p class="product-body">
+                        Bright ivory hues with beautiful natural grains and veining. Hand-selected for consistency and
+                        beauty. Honed finish that's smooth, matte, and water-resistant.<br><br>
+                        Available in a polished finish, too. Sourced from reputable Italian quarries. Choose Rivage for
+                        natural beauty that speaks volumes â€” subtly.
+                    </p>
+                </div>
+
+                <!-- Spec Tags -->
+                <div class="product-spec-tags">
+                    <span class="spec-tag">Italian Travertine</span>
+                    <span class="spec-dot"></span>
+                    <span class="spec-tag">Water-Resistant Protective Seal</span>
+                    <span class="spec-dot"></span>
+                    <span class="spec-tag">Sculptural Base with Smooth, Flowing Lines</span>
+                </div>
+            </div>
+
+            <!-- Right: Sidebar -->
+            <div class="product-sidebar">
+
+                <!-- Promo Banner -->
+                <div class="promo-banner">
+                    <img class="promo-icon"
+                        src="public/assets/img/Placeholderimg.png"
+                        alt="Product icon">
+                    <div>
+                        <p class="promo-title">Title Product</p>
+                        <p class="promo-body">
+
+                            Lorem ipsum ut aliquip ex ea Lorem; ipsum ut aliquip ex Lorem
+                            et Lorem; ipsum ut aliquip ex Lorem. Lorem ipsum
+                            dolor sit amet-consectetur et adipiscing elit sed do eiusmod.
+                            Tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="sidebar-btn-group">
+                    <button class="btn-primary">All Selections Required</button>
+                    <button class="btn-secondary">
+                        Add to Wishlist
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- USPs -->
+                <div class="usp-grid">
+                    <div class="usp-item">
+                        <img class="usp-icon"
+                            src="public/assets/img/Placeholderimg.png" alt="">
+                        <span class="usp-label">Complimentary Delivery &amp; Setup<br>Above $2K</span>
+                    </div>
+                    <div class="usp-item">
+                        <img class="usp-icon"
+                            src="public/assets/img/Placeholderimg.png" alt="">
+                        <span class="usp-label">Complimentary Styling Services</span>
+                    </div>
+                    <div class="usp-item">
+                        <img class="usp-icon"
+                            src="public/assets/img/Placeholderimg.png" alt="">
+                        <span class="usp-label">Quality Assured Warranty<br>Coverage</span>
+                    </div>
+                    <div class="usp-item">
+                        <img class="usp-icon"
+                            src="public/assets/img/Placeholderimg.png" alt="">
+                        <span class="usp-label">Fast Local Service Support</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- â”€â”€ CONTACT + FOOTER (from index.html) â”€â”€ -->
+    <section class="contact-section" id="contact">
+
+        <div class="contact-container">
+            <div class="ct-left">
+                <p class="ct-body">
+                    Setiap bulan, satu suntikan ide segar,
+                    analisis tajam, dan panduan konkret untuk
+                    <strong>membangun ekosistem pertanian yang efisien,
+                        berkelanjutan, dan siap masa depan</strong> bersama ABSYS.
+                </p>
+            </div>
+            <div class="ct-right">
+                <h2 class="ct-label">Hubungi Spesialis<br>Tanaman Kami</h2>
+                <a href="#contact-form" class="ct-cta-btn">Mulai Konsultasi Gratis</a>
+                <p class="ct-sub">
+                    Daftarkan operasi Anda dan dapatkan rencana implementasi
+                    yang disesuaikan langsung dari tim ahli kami.
+                </p>
+            </div>
+        </div>
+
+        <div class="ft-wrap">
+            <div class="ft-grid">
+                <!-- COL 1: Brand -->
+                <div class="ft-col ft-col--brand">
+                    <a href="#" class="ft-logo-link">
+                        <img loading="lazy" src="public/assets/img/Asset 2.svg" alt="ABSYS Agritek Logo"
+                            class="ft-logo-img">
+                    </a>
+                    <p class="ft-tagline">Fertilizer, Reinvented.</p>
+                    <div class="ft-contact-info">
+                        <p class="ft-contact-label">BEROPERASI DI INDONESIA</p>
+                        <p class="ft-contact-detail">Jl. Agritek No. 88, Jakarta</p>
+                        <p class="ft-contact-detail">+62 21 1234 5678</p>
+                        <p class="ft-contact-detail">hello@absysagritek.com</p>
+                    </div>
+                    <a href="#contact-form" class="ft-cta-btn">
+                        <span>Mulai Konsultasi</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="14" height="14">
+                            <path d="m12 2-1.4 1.4 5.6 5.6h-16.2v2h16.2l-5.6 5.6 1.4 1.4 8-8z" fill="currentColor" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- COL 2: Quick Links -->
+                <div class="ft-col ft-col--links">
+                    <h4 class="ft-col-title">TAUTAN CEPAT</h4>
+                    <ul class="ft-links-list">
+                        <li><a href="#">Tentang ABSYS</a></li>
+                        <li><a href="#">Produk Kami</a></li>
+                        <li><a href="#">Penelitian &amp; Uji Lapang</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat &amp; Ketentuan</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+
+                <!-- COL 3: Newsletter -->
+                <div class="ft-col ft-col--newsletter">
+                    <h4 class="ft-col-title">TETAP TERHUBUNG</h4>
+                    <p class="ft-nl-desc">Dapatkan wawasan pertanian terbaru langsung ke inbox Anda.</p>
+                    <form class="ft-nl-form" onsubmit="return false;">
+                        <input type="email" class="ft-nl-input" placeholder="Alamat email Anda">
+                        <button type="submit" class="ft-nl-btn">SUBSCRIBE</button>
+                    </form>
+                    <div class="ft-social-links">
+                        <a href="#" class="ft-social-link">INSTAGRAM</a>
+                        <a href="#" class="ft-social-link">LINKEDIN</a>
+                        <a href="#" class="ft-social-link">YOUTUBE</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ft-bar">
+                <span class="ft-bar-copy">&copy; 2025 ABSYS Agritek. All rights reserved.</span>
+                <div class="ft-bar-links">
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat &amp; Ketentuan</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- â”€â”€ SCRIPTS â”€â”€ -->
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        'use strict';
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // â”€â”€ Lenis Smooth Scroll â”€â”€
+            const lenis = new Lenis({ autoRaf: true, smoothWheel: true });
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0, 0);
+
+            // â”€â”€ Navbar scroll state â”€â”€
+            const siteHeader = document.getElementById('site-header');
+            const siteHeaderBlend = document.getElementById('site-header-blend');
+            const SCROLL_THRESHOLD = 60;
+            lenis.on('scroll', ({ scroll }) => {
+                if (siteHeader) siteHeader.classList.toggle('is-scrolled', scroll > SCROLL_THRESHOLD);
+                if (siteHeaderBlend) siteHeaderBlend.classList.toggle('is-scrolled', scroll > SCROLL_THRESHOLD);
+            });
+
+            // â”€â”€ Hero image carousel â”€â”€
+            const heroImg = document.getElementById('hero-bg-img');
+            const thumbs = [
+                document.getElementById('card-0'),
+                document.getElementById('card-1'),
+                document.getElementById('card-2')
+            ];
+
+            const heroImages = [
+                'https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp',
+                'https://framerusercontent.com/images/sXpGa5SBIHzL1ZlluLzui0nhLvU.webp',
+                'https://framerusercontent.com/images/ruM84yQKYiTGK0mIWGzyalj01WQ.webp'
+            ];
+
+            let activeIndex = 1; // Start with the center product (Knobs) as active
+
+            function activateCard(index) {
+                if (index === activeIndex) return;
+                activeIndex = index;
+
+                // Crossfade hero bg
+                heroImg.style.opacity = '0';
+                setTimeout(function () {
+                    heroImg.src = heroImages[index];
+                    heroImg.style.opacity = '1';
+                }, 200);
+
+                // Update thumb states
+                thumbs.forEach(function (thumb, i) {
+                    const inset = thumb.querySelector('.thumb-inset');
+                    if (i === index) {
+                        thumb.style.opacity = '0.75';
+                        thumb.style.boxShadow = '0 2px 20px 6px rgba(0,0,0,0.3)';
+                        if (inset) inset.style.opacity = '0';
+                    } else {
+                        thumb.style.opacity = '0.55';
+                        thumb.style.boxShadow = 'none';
+                        if (inset) inset.style.opacity = '1';
+                    }
+                });
+            }
+
+            thumbs.forEach(function (thumb, i) {
+                thumb.addEventListener('click', function () { activateCard(i); });
+                thumb.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateCard(i); }
+                });
+            });
+
+            // â”€â”€ GSAP scroll animations â”€â”€
+            gsap.from('.product-title', {
+                opacity: 0, y: 40, duration: 1.1, ease: 'power3.out',
+                scrollTrigger: { trigger: '.product-detail', start: 'top 80%' }
+            });
+
+            gsap.from('.product-section', {
+                opacity: 0, y: 30, duration: 0.9, stagger: 0.15, ease: 'power3.out',
+                scrollTrigger: { trigger: '.product-info', start: 'top 70%' }
+            });
+
+            gsap.from('.product-sidebar > *', {
+                opacity: 0, x: 30, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+                scrollTrigger: { trigger: '.product-sidebar', start: 'top 80%' }
+            });
+
+            // ── Hamburger Menu Toggle ──
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+            if (hamburgerBtn && mobileNavOverlay) {
+                hamburgerBtn.addEventListener('click', () => {
+                    const isOpen = hamburgerBtn.classList.toggle('is-open');
+                    mobileNavOverlay.classList.toggle('is-open', isOpen);
+                    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                    mobileNavOverlay.setAttribute('aria-hidden', !isOpen);
+                    document.body.style.overflow = isOpen ? 'hidden' : '';
+                });
+                mobileNavOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburgerBtn.classList.remove('is-open');
+                        mobileNavOverlay.classList.remove('is-open');
+                        hamburgerBtn.setAttribute('aria-expanded', 'false');
+                        mobileNavOverlay.setAttribute('aria-hidden', 'true');
+                        document.body.style.overflow = '';
+                    });
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && mobileNavOverlay.classList.contains('is-open')) {
+                        hamburgerBtn.classList.remove('is-open');
+                        mobileNavOverlay.classList.remove('is-open');
+                        hamburgerBtn.setAttribute('aria-expanded', 'false');
+                        mobileNavOverlay.setAttribute('aria-hidden', 'true');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

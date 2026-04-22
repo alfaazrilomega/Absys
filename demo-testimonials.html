@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABSYS Testimonials Component Demo</title>
+
+  <!-- Google Fonts (from ABSYS design system) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+
+  <!-- Testimonials Component CSS -->
+  <link rel="stylesheet" href="public/assets/css/components/testimonials.css">
+
+  <style>
+    /* Demo-specific styles (reset + basic setup) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', 'Inter', sans-serif;
+      background-color: #fcfcfc;
+      color: #111111;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Spacer sections to demonstrate scroll */
+    .spacer {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 2rem;
+      color: #999;
+      border-bottom: 1px solid #eee;
+    }
+
+    /* Simple footer */
+    .demo-footer {
+      height: 30vh;
+      background: #eeede9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Spacer: Hero Section (simulated) -->
+  <section class="spacer" style="background: linear-gradient(90deg, #FFFFFF 0%, #B892FF 100%);">
+    <div>
+      <h1 style="font-family: 'EB Garamond'; font-size: 4rem; font-weight: 700;">ABSYS Hero</h1>
+      <p style="font-family: 'DM Sans'; margin-top: 1rem;">Scroll down to see Testimonials</p>
+    </div>
+  </section>
+
+  <!-- Spacer: About/Pricing (simulated) -->
+  <section class="spacer">
+    <p>About Projects Section</p>
+  </section>
+
+  <!-- TESTIMONIALS COMPONENT -->
+  <section class="testimonials-section" id="testimonials">
+    <!-- Background Pattern (optional subtle texture) -->
+    <div class="testimonials-bg"></div>
+
+    <!-- Section Header -->
+    <div class="testimonials-header">
+      <span class="testimonials-badge js-text-anim-blur">TESTIMONIALS</span>
+      <h2 class="testimonials-title js-text-anim-slide">
+        Trusted by Innovative<br>Farms Worldwide
+      </h2>
+    </div>
+
+    <!-- Testimonials Grid (Bento-style) -->
+    <div class="testimonials-grid">
+      <!-- Testimonial Card 1 (Featured - larger) -->
+      <article class="testimonial-card testimonial-featured js-gsap-fade-up">
+        <div class="testimonial-content glass-card">
+          <svg class="quote-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M14 24C14 18.477 18.477 14 24 14V14C29.523 14 34 18.477 34 24V34H14V24Z" fill="var(--accent-secondary)" fill-opacity="0.1"/>
+            <path d="M14 20C14 17.7909 15.7909 16 18 16H20V22H18C18 22 14 22.5 14 25V20Z" fill="var(--accent-secondary)" fill-opacity="0.2"/>
+            <path d="M20 16V22H18V16H20Z" fill="var(--accent-secondary)" fill-opacity="0.3"/>
+          </svg>
+          <blockquote>
+            <p class="testimonial-text">"ABSYS's biodegradable packaging reduced our plastic waste by 87% in the first season. The barrier technology kept our fertilizer perfectly dry, even during monsoon season. Absolutely revolutionary."</p>
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Marco" alt="Marco Silva">
+            </div>
+            <div class="author-info">
+              <strong class="author-name">Marco Silva</strong>
+              <span class="author-role">Operations Director<br>Fazenda Sol Nascente, Brazil</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial Card 2 -->
+      <article class="testimonial-card js-gsap-fade-up">
+        <div class="testimonial-content glass-card">
+          <blockquote>
+            <p class="testimonial-text">"We've tried many eco-friendly alternatives, but ABSYS is the only one that doesn't compromise on protection. Our yield increased 12% because the product stayed fresh longer in the field."</p>
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="author-company-logo" style="font-family: 'DM Sans'; font-weight: 700; font-size: 1rem; color: #333;">
+              GreenFields Co.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial Card 3 -->
+      <article class="testimonial-card js-gsap-fade-up">
+        <div class="testimonial-content glass-card">
+          <blockquote>
+            <p class="testimonial-text">"The ROI was clear within 3 months. Not only are we more sustainable, we've positioned ourselves as industry leaders in innovation. Our customers notice and appreciate the difference."</p>
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="author-company-logo" style="font-family: 'DM Sans'; font-weight: 700; font-size: 1rem; color: #333;">
+              TerraViva Farms
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial Card 4 (Small stats card) -->
+      <article class="testimonial-card testimonial-stats js-gsap-fade-up">
+        <div class="stats-card glass-card">
+          <div class="stat-number" data-count="87">0</div>
+          <div class="stat-label">% Waste Reduction</div>
+          <div class="stat-desc">Average across all deployments</div>
+        </div>
+      </article>
+
+      <!-- Testimonial Card 5 -->
+      <article class="testimonial-card js-gsap-fade-up">
+        <div class="testimonial-content glass-card">
+          <blockquote>
+            <p class="testimonial-text">"Switching to ABSYS was the easiest decision we made all year. Their team handled the transition seamlessly, and our packaging costs ended up lower than expected."</p>
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Jennifer" alt="Jennifer Walsh">
+            </div>
+            <div class="author-info">
+              <strong class="author-name">Jennifer Walsh</strong>
+              <span class="author-role">CEO<br>AgriTech Solutions UK</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Trust Badges Row -->
+    <div class="trust-badges js-gsap-fade-up">
+      <span class="badge-label">Trusted by industry leaders:</span>
+      <div class="badges-row">
+        <div class="trust-badge" style="font-family: 'DM Sans'; font-size: 0.875rem; font-weight: 600;">Certified Organic</div>
+        <div class="trust-badge" style="font-family: 'DM Sans'; font-size: 0.875rem; font-weight: 600;">ISO 14001</div>
+        <div class="trust-badge" style="font-family: 'DM Sans'; font-size: 0.875rem; font-weight: 600;">Cradle to Cradle</div>
+        <div class="trust-badge" style="font-family: 'DM Sans'; font-size: 0.875rem; font-weight: 600;">B Corp</div>
+        <div class="trust-badge" style="font-family: 'DM Sans'; font-size: 0.875rem; font-weight: 600;">Sustainable Ag</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spacer: Contact Section (simulated) -->
+  <section class="spacer" style="background: #eeede9;">
+    <p>Contact Section</p>
+  </section>
+
+  <!-- Footer (simulated) -->
+  <footer class="demo-footer">
+    <p>ABSYS Agritek — Fertilizer, Reinvented.</p>
+  </footer>
+
+  <!-- Lenis + GSAP Initialization (standard pattern) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lenis = new Lenis({ autoRaf: true, smoothWheel: true });
+
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0, 0);
+
+      // Load component JS
+      const script = document.createElement('script');
+      script.src = '/public/js/components/testimonials.js';
+      document.body.appendChild(script);
+    });
+  </script>
+
+</body>
+</html>

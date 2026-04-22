@@ -1,0 +1,158 @@
+/* ============================================================
+   ABSYS — ProductHero-Component.css
+   Product page hero: full-bleed image + glass thumbnail panel
+   ============================================================ */
+
+.product-hero {
+    position: relative;
+    width: 100%;
+    height: clamp(320px, 55vw, 660px);
+    overflow: hidden;
+    background: var(--bg-base);
+}
+
+/* ── Full-bleed background image ── */
+.hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity 0.4s ease;
+}
+
+/* ── Glass panel at bottom ── */
+.hero-glass-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: clamp(200px, 40%, 350px);
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(4px) saturate(1.8);
+    -webkit-backdrop-filter: blur(4px) saturate(1.8);
+    border-top: 1px solid rgba(0, 0, 0, 0.4);
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(12px, 8vw, 120px);
+    padding: 0 clamp(1rem, 5vw, 80px) 16px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* ── Thumbnail cards ── */
+.hero-thumb {
+    position: relative;
+    height: clamp(120px, 18vw, 214px);
+    width: clamp(100px, 18vw, 214px);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+}
+
+.hero-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.hero-thumb .thumb-inset {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    transition: opacity 0.4s ease;
+}
+
+.hero-thumb--left {
+    opacity: 0.60;
+}
+
+.hero-thumb--left .thumb-inset {
+    box-shadow: inset -4px 4px 0.3px 0px rgba(0,0,0,0.25);
+}
+
+.hero-thumb--right {
+    opacity: 0.44;
+}
+
+.hero-thumb--right .thumb-inset {
+    box-shadow: inset -4px 4px 0.3px 0px rgba(0,0,0,0.25);
+}
+
+.hero-thumb--center {
+    opacity: 1;
+    box-shadow: 0px 1px 4px 5px rgba(0,0,0,0.25);
+}
+
+.hero-thumb--center .thumb-inset {
+    opacity: 0;
+}
+
+.hero-thumb:hover {
+    transform: translateY(-3px);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* ≤ 1024px */
+@media (max-width: 1024px) {
+    .product-hero {
+        height: clamp(280px, 50vw, 500px);
+    }
+
+    .hero-glass-panel {
+        gap: clamp(10px, 5vw, 60px);
+        padding: 0 clamp(1rem, 4vw, 3rem) 14px;
+    }
+}
+
+/* ≤ 768px — slim down thumbnails */
+@media (max-width: 768px) {
+    .product-hero {
+        height: clamp(240px, 55vw, 380px);
+    }
+
+    .hero-glass-panel {
+        height: clamp(160px, 36%, 220px);
+        gap: clamp(8px, 3vw, 24px);
+        padding: 0 clamp(0.75rem, 3vw, 1.5rem) 12px;
+        justify-content: space-evenly;
+    }
+
+    .hero-thumb {
+        height: clamp(100px, 22vw, 160px);
+        width: clamp(90px, 22vw, 150px);
+        border-radius: 10px;
+    }
+}
+
+/* ≤ 480px */
+@media (max-width: 480px) {
+    .product-hero {
+        height: clamp(200px, 60vw, 300px);
+    }
+
+    .hero-glass-panel {
+        gap: 6px;
+        padding: 0 0.5rem 10px;
+        height: clamp(130px, 30%, 180px);
+    }
+
+    .hero-thumb {
+        height: clamp(80px, 25vw, 120px);
+        width: clamp(72px, 25vw, 110px);
+        border-radius: 8px;
+    }
+}

@@ -1,0 +1,129 @@
+/* ============================================================
+   ABSYS — Faq-Component.css
+   Split-Screen FAQ with sticky left + accordion right
+   ============================================================ */
+
+.theme-light-wrapper .faq-section {
+    display: flex;
+    justify-content: space-between;
+    padding: clamp(60px, 15vh, 150px) clamp(1.5rem, 5%, 5rem);
+    background-color: #fcfcfc;
+    gap: clamp(2rem, 5vw, 4rem);
+}
+
+/* ── Left: sticky heading ── */
+.theme-light-wrapper .faq-left-sticky {
+    width: 45%;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+    padding-right: clamp(1rem, 4vw, 4rem);
+}
+
+.theme-light-wrapper .faq-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    border: 1px solid #cccccc;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+}
+
+.theme-light-wrapper .faq-left-sticky h2 {
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+/* ── Right: accordion ── */
+.theme-light-wrapper .faq-right-accordion {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.theme-light-wrapper .faq-item {
+    border-bottom: 1px solid #cccccc;
+    padding: clamp(1.5rem, 3vh, 2.5rem) 0;
+    cursor: pointer;
+}
+
+.theme-light-wrapper .faq-item:first-child {
+    border-top: 1px solid #cccccc;
+}
+
+.theme-light-wrapper .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 500;
+    margin: 0;
+    gap: 1rem;
+}
+
+.theme-light-wrapper .faq-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    transition: transform 0.4s ease;
+    flex-shrink: 0;
+}
+
+.theme-light-wrapper .faq-answer {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.theme-light-wrapper .faq-answer p {
+    margin: 0;
+    padding-top: 1.5rem;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    line-height: 1.6;
+    color: #333333;
+    max-width: 90%;
+}
+
+.theme-light-wrapper .faq-item.is-active .faq-icon {
+    transform: rotate(45deg);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* ≤ 768px — stack the two columns */
+@media (max-width: 768px) {
+    .theme-light-wrapper .faq-section {
+        flex-direction: column;
+        padding: clamp(3rem, 8vh, 6rem) 1.25rem;
+    }
+
+    .theme-light-wrapper .faq-left-sticky {
+        width: 100%;
+        position: relative;
+        top: 0;
+        padding-right: 0;
+        margin-bottom: 2.5rem;
+    }
+
+    .theme-light-wrapper .faq-right-accordion {
+        width: 100%;
+    }
+}
+
+/* ≤ 480px */
+@media (max-width: 480px) {
+    .theme-light-wrapper .faq-question {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+    }
+
+    .theme-light-wrapper .faq-icon {
+        font-size: 1.2rem;
+    }
+}

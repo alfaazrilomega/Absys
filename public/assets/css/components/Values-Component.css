@@ -1,0 +1,228 @@
+/* ============================================================
+   ABSYS — Values-Component.css
+   Per-panel split text + horizontal GSAP scroll (desktop)
+   Vertical stack fallback for mobile (≤ 1024px)
+   ============================================================ */
+
+/* ── DESKTOP BASE ── */
+#values-combined {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background: #f4f4f0;
+}
+
+#values-track {
+    display: flex;
+    height: 100%;
+    will-change: transform;
+}
+
+/* Each panel = 100vw × 100vh */
+.values-panel {
+    flex-shrink: 0;
+    width: 100vw;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f4f4f0;
+}
+
+.values-panel:nth-child(even) {
+    background: #eeede9;
+}
+
+/* ── Giant split word (desktop) ── */
+.word-wrapper {
+    position: relative;
+    font-size: clamp(3rem, 15vw, 15rem);
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    color: #111111;
+    user-select: none;
+}
+
+.word-placeholder { opacity: 0; }
+
+.word-top {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    clip-path: inset(0 0 50% 0);
+    z-index: 10;
+    color: #111111;
+}
+
+.word-bottom {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    clip-path: inset(50% 0 0 0);
+    z-index: 10;
+    color: #111111;
+}
+
+/* Description fades in through the gap (desktop) */
+.values-desc {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    text-align: center;
+    width: min(480px, 80vw);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.values-desc p {
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
+    font-weight: 400;
+    color: rgba(17, 17, 17, 0.6);
+    letter-spacing: 0.06em;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* Panel number (desktop) */
+.values-panel-num {
+    position: absolute;
+    top: 2.5rem;
+    left: 3rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(17, 17, 17, 0.3);
+}
+
+/* ============================================================
+   MOBILE FALLBACK — vertical stack (≤ 1024px)
+   IMPORTANT: The GSAP split-word mechanism is completely disabled.
+   The word-placeholder becomes the visible heading.
+   All GSAP inline styles are cleared by JS (see index.html).
+   ============================================================ */
+
+@media (max-width: 1024px) {
+
+    /* Section: no pinning, no fixed height, no overflow hidden */
+    #values-combined {
+        height: auto !important;
+        overflow: visible !important;
+        padding: 0;
+    }
+
+    /* Track: vertical block-flow, no horizontal flex */
+    #values-track {
+        display: block !important;
+        height: auto !important;
+        transform: none !important; /* block GSAP inline x transform */
+        will-change: auto;
+    }
+
+    /* Each panel stacks as a full-width block */
+    .values-panel {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        position: relative !important;
+        overflow: visible !important;
+        padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 6vw, 3rem) clamp(3rem, 8vw, 5rem);
+        border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+    }
+
+    .values-panel:last-child {
+        border-bottom: none;
+    }
+
+    /* ── KILL the GSAP split-word mechanism entirely on mobile ── */
+    /* The animated halves are hidden; the placeholder is shown instead */
+    .word-top,
+    .word-bottom {
+        display: none !important;
+        position: static !important;
+        clip-path: none !important;
+        /* Stomp any GSAP inline yPercent / opacity */
+        transform: none !important;
+        opacity: 0 !important;
+    }
+
+    /* The placeholder IS the visible word on mobile */
+    .word-placeholder {
+        opacity: 1 !important;
+        display: block !important;
+    }
+
+    /* Word wrapper: standard block, no relative positioning trick needed */
+    .word-wrapper {
+        position: static !important;
+        display: block;
+        /* Aggressive clamp: fits ADAPTABILITAS at 320px  */
+        font-size: clamp(1.8rem, 12vw, 5rem);
+        font-weight: 900;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        color: #111111;
+        margin-bottom: 1.25rem;
+    }
+
+    /* Description: flowing block below the word, always visible */
+    .values-desc {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        /* Stomp GSAP opacity:0 inline style */
+        opacity: 1 !important;
+        pointer-events: auto;
+        text-align: left;
+        width: 100%;
+        max-width: 560px;
+        margin-top: 0;
+    }
+
+    .values-desc p {
+        font-size: clamp(0.85rem, 3vw, 1rem);
+        line-height: 1.7;
+        color: rgba(17, 17, 17, 0.65);
+        letter-spacing: 0.03em;
+    }
+
+    /* Panel number */
+    .values-panel-num {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        display: block;
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(17, 17, 17, 0.3);
+        margin-bottom: 1rem;
+    }
+}
+
+/* ── Extra-small phone fix ── */
+@media (max-width: 480px) {
+    .values-panel {
+        padding: 2.5rem 1.25rem;
+    }
+
+    .word-wrapper {
+        /* At 320px: 12vw = 38.4px — readable, no overflow */
+        font-size: clamp(1.6rem, 11vw, 2.8rem);
+        letter-spacing: -0.5px;
+    }
+
+    .values-desc p {
+        font-size: 0.88rem;
+    }
+}

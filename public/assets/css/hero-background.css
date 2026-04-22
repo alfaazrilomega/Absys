@@ -1,0 +1,128 @@
+/* Hero Background CSS - Pure CSS/SVG Implementation */
+/* Replaces heavy Spline viewer with lightweight gradient and wavy mesh */
+
+/* CSS Custom Properties for easy color management */
+:root {
+    --gradient-start: #d8c8f0;
+    --gradient-end: #B892FF;
+    --wavy-line-color: rgba(255, 255, 255, 0.15);
+    --wavy-line-thickness: 1px;
+}
+
+/* Hero Background Container */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none; /* Allow clicks to pass through to content */
+}
+
+/* Gradient Base Layer */
+.gradient-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    /* Smooth transition from white to lavender */
+}
+
+/* Wavy Mesh Overlay - SVG Pattern */
+.wavy-mesh-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wavy-pattern' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 50 Q 25 30, 50 50 T 100 50' stroke='rgba(255,255,255,0.15)' stroke-width='1' fill='none' opacity='0.8'/%3E%3Cpath d='M0 60 Q 25 40, 50 60 T 100 60' stroke='rgba(255,255,255,0.12)' stroke-width='1' fill='none' opacity='0.7'/%3E%3Cpath d='M0 40 Q 25 20, 50 40 T 100 40' stroke='rgba(255,255,255,0.12)' stroke-width='1' fill='none' opacity='0.7'/%3E%3Cpath d='M0 70 Q 25 50, 50 70 T 100 70' stroke='rgba(255,255,255,0.10)' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M0 30 Q 25 10, 50 30 T 100 30' stroke='rgba(255,255,255,0.10)' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M0 80 Q 25 60, 50 80 T 100 80' stroke='rgba(255,255,255,0.08)' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M0 20 Q 25 0, 50 20 T 100 20' stroke='rgba(255,255,255,0.08)' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M0 90 Q 25 70, 50 90 T 100 90' stroke='rgba(255,255,255,0.06)' stroke-width='1' fill='none' opacity='0.4'/%3E%3Cpath d='M0 10 Q 25 -10, 50 10 T 100 10' stroke='rgba(255,255,255,0.06)' stroke-width='1' fill='none' opacity='0.4'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23wavy-pattern)'/%3E%3C/svg%3E");
+    background-size: 100px 100px;
+    background-position: center;
+    opacity: 0.8;
+    mix-blend-mode: overlay;
+}
+
+/* Enhanced Wavy Mesh for Right Side (where gradient is strongest) */
+.wavy-mesh-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wavy-pattern-right' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 50 Q 25 30, 50 50 T 100 50' stroke='rgba(184,146,255,0.25)' stroke-width='1' fill='none' opacity='0.9'/%3E%3Cpath d='M0 60 Q 25 40, 50 60 T 100 60' stroke='rgba(184,146,255,0.20)' stroke-width='1' fill='none' opacity='0.8'/%3E%3Cpath d='M0 40 Q 25 20, 50 40 T 100 40' stroke='rgba(184,146,255,0.20)' stroke-width='1' fill='none' opacity='0.8'/%3E%3Cpath d='M0 70 Q 25 50, 50 70 T 100 70' stroke='rgba(184,146,255,0.15)' stroke-width='1' fill='none' opacity='0.7'/%3E%3Cpath d='M0 30 Q 25 10, 50 30 T 100 30' stroke='rgba(184,146,255,0.15)' stroke-width='1' fill='none' opacity='0.7'/%3E%3Cpath d='M0 80 Q 25 60, 50 80 T 100 80' stroke='rgba(184,146,255,0.12)' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M0 20 Q 25 0, 50 20 T 100 20' stroke='rgba(184,146,255,0.12)' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M0 90 Q 25 70, 50 90 T 100 90' stroke='rgba(184,146,255,0.10)' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M0 10 Q 25 -10, 50 10 T 100 10' stroke='rgba(184,146,255,0.10)' stroke-width='1' fill='none' opacity='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23wavy-pattern-right)'/%3E%3C/svg%3E");
+    background-size: 100px 100px;
+    background-position: center;
+    opacity: 1;
+}
+
+/* Hero Content Wrapper - ensures content stays on top */
+.hero-content-wrapper {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto; /* Re-enable pointer events for content */
+}
+
+/* Smooth transition for the hero section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Gradient mask to blend the bottom of the hero into sections below */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .wavy-mesh-overlay {
+        background-size: 80px 80px;
+        opacity: 0.9;
+    }
+    
+    .wavy-mesh-overlay::before {
+        background-size: 80px 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wavy-mesh-overlay {
+        background-size: 60px 60px;
+        opacity: 1;
+    }
+    
+    .wavy-mesh-overlay::before {
+        background-size: 60px 60px;
+    }
+}
+
+/* Performance optimizations */
+.hero-background {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.gradient-base {
+    will-change: background;
+}
+
+.wavy-mesh-overlay {
+    will-change: opacity;
+}

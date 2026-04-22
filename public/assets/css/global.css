@@ -1,0 +1,94 @@
+/* ============================================================
+   ABSYS — global.css
+   Design tokens · Reset · Body · Lenis overrides
+   Shared by: index.html, produk.html
+   ============================================================ */
+
+/* ── Design System Variables ── */
+:root {
+    --bg-base: #fcfcfc;
+    --bg-muted: #eeede9;
+    --text-primary: #111111;
+    --accent-secondary: #3B67F5;
+    --border-subtle: rgba(17, 17, 17, 0.1);
+
+    /* Field Trials palette */
+    --ft-beige: #f4f4f0;
+    --ft-olive: #35481e;
+    --ft-olive-mid: #4e6528;
+    --ft-card-bg: #f4f4f0;
+    --ft-text-sm: #4d6130;
+
+    /* Spacing scale */
+    --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+    --space-sm: clamp(1rem, 2vw, 1.5rem);
+    --space-md: clamp(1.5rem, 3vw, 2.5rem);
+    --space-lg: clamp(2rem, 5vw, 4rem);
+    --space-xl: clamp(4rem, 10vh, 10rem);
+
+    /* Container */
+    --container-max: 1280px;
+    --container-pad: clamp(1rem, 5vw, 5rem);
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── Base ── */
+html,
+body {
+    width: 100%;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'DM Sans', 'Helvetica Neue', 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ── Lenis Smooth Scroll Overrides ── */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+/* ── Utility: max-width container ── */
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-pad);
+}

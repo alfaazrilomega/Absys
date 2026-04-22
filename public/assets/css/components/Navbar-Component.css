@@ -1,0 +1,470 @@
+/* ============================================================
+   ABSYS — Navbar-Component.css
+   OROYA-style dual-header + full-screen overlay hamburger
+   ============================================================ */
+
+/* ── Base header (at-top state) ── */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    z-index: 1000;
+    background: transparent;
+    --header-radius: 0px;
+    border-radius: var(--header-radius);
+    transition:
+        padding 0.55s cubic-bezier(0.76, 0, 0.24, 1),
+        background 0.55s cubic-bezier(0.76, 0, 0.24, 1),
+        backdrop-filter 0.55s cubic-bezier(0.76, 0, 0.24, 1),
+        box-shadow 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+
+    /* No click through header gaps */
+    pointer-events: none;
+}
+
+.site-header > * {
+    pointer-events: auto;
+}
+
+/* ── Scrolled state (dark hero variant) ── */
+.site-header.is-scrolled {
+    padding: 1rem 4rem;
+    background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.54) 0%,
+            rgba(0, 0, 0, 0.01) 80%,
+            rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow: 0 1px 0 rgba(224, 221, 239, 0.06);
+}
+
+/* ── Light Theme state (at top + scrolled) — always transparent ── */
+.site-header.theme-light {
+    background: transparent;
+    box-shadow: none;
+}
+
+/* ── Light Theme + Scrolled → stays transparent (theme-light overrides is-scrolled gradient) ── */
+/* The cascade order is intentional: .theme-light defined after .is-scrolled means transparent wins */
+
+/* ── Nav groups ── */
+.nav-group {
+    display: flex;
+    align-items: center;
+    gap: 2.2rem;
+}
+
+.nav-group.left  { justify-content: flex-start; }
+.nav-group.right { justify-content: flex-end; }
+
+/* ── Nav links ── */
+.nav-item {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    transition: color 0.55s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.3s ease;
+}
+
+.site-header.theme-light .nav-item {
+    color: #111111;
+    font-weight: 600;
+}
+
+/* Underline animation */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: white;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1), background 0.4s ease;
+}
+
+.site-header.theme-light .nav-item::after {
+    background: #111111;
+}
+
+.nav-item:hover            { opacity: 1; }
+.nav-item:hover::after     {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+/* ── Logo wrapper ── */
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition:
+        transform 0.55s cubic-bezier(0.76, 0, 0.24, 1),
+        opacity 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.logo a {
+    position: relative;
+    display: block;
+}
+
+.logo .logo-icon {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: height 0.55s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.logo .logo-text {
+    height: 16px;
+    margin-top: 2px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: height 0.55s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.logo .logo-default {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: max-content;
+    transition: opacity 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.logo .logo-light-theme {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    width: max-content;
+    transition: opacity 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.site-header.theme-light .logo .logo-default    { opacity: 0; }
+.site-header.theme-light .logo .logo-light-theme { opacity: 1; }
+
+/* ── Blend (Duplicate) Header — Magic Inversion ── */
+.site-header.site-header-blend {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    pointer-events: none;
+    z-index: 101;
+}
+
+/* Blend header: replace inline styles to hide left nav + logo */
+.site-header.site-header-blend .nav-group.left,
+.site-header.site-header-blend .logo {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Base header: hide right nav so only blend header shows it */
+.site-header:not(.site-header-blend) .nav-group.right {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+/* Blend header right nav: allow pointer events so links are clickable */
+.site-header.site-header-blend .nav-group.right {
+    pointer-events: auto;
+}
+
+/* Pre-scroll: full mix-blend-mode inversion on right nav */
+.site-header.site-header-blend:not(.is-scrolled) {
+    mix-blend-mode: difference;
+}
+
+.site-header.site-header-blend:not(.is-scrolled) .nav-group.right .nav-item {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    font-weight: 600;
+}
+
+.site-header.site-header-blend:not(.is-scrolled) .nav-group.right .nav-item::after {
+    background: #ffffff !important;
+}
+
+/* SCROLLED STATE: Force High Contrast White Text */
+.site-header.is-scrolled .nav-group.right .nav-item {
+    color: #000000 !important;
+    opacity: 1 !important; /* Ensure no partial transparency hides it */
+}
+
+.site-header.is-scrolled .nav-group.right .nav-item::after {
+    background: #ffffff !important;
+}
+
+.site-header.is-scrolled {
+    z-index: 9999 !important; /* Extremely high z-index to break through overlaps */
+}
+
+
+/* ============================================================
+   HAMBURGER BUTTON
+   ============================================================ */
+.hamburger-btn {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    pointer-events: auto;
+    z-index: 2001;
+    position: relative;
+}
+
+.hamburger-btn span {
+    display: block;
+    height: 1.5px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: width 0.3s ease, transform 0.4s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.3s ease;
+}
+
+.hamburger-btn span:nth-child(1) { width: 28px; }
+.hamburger-btn span:nth-child(2) { width: 20px; }
+.hamburger-btn span:nth-child(3) { width: 14px; }
+
+/* Open state — morphs to X */
+.hamburger-btn.is-open span:nth-child(1) {
+    width: 24px;
+    transform: translateY(6.5px) rotate(45deg);
+}
+.hamburger-btn.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.hamburger-btn.is-open span:nth-child(3) {
+    width: 24px;
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ============================================================
+   FULL-SCREEN MOBILE OVERLAY MENU
+   ============================================================ */
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: var(--bg-base);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(5rem, 15vw, 8rem) clamp(2rem, 8vw, 5rem);
+
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.5s cubic-bezier(0.76, 0, 0.24, 1),
+        visibility 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.mobile-nav-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* ── Overlay — stagger backdrop clip-path animation ── */
+.mobile-nav-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg-muted);
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: -1;
+}
+
+.mobile-nav-overlay.is-open::before {
+    transform: scaleY(1);
+}
+
+/* ── Overlay Nav Items ── */
+.mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 3vw, 1.75rem);
+    width: 100%;
+}
+
+.mobile-nav-item a {
+    font-size: clamp(2.5rem, 12vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    text-decoration: none;
+    line-height: 1;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Stagger: each link reveals sequentially */
+.mobile-nav-overlay.is-open .mobile-nav-item a {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-nav-overlay.is-open .mobile-nav-item:nth-child(1) a { transition-delay: 0.08s; }
+.mobile-nav-overlay.is-open .mobile-nav-item:nth-child(2) a { transition-delay: 0.13s; }
+.mobile-nav-overlay.is-open .mobile-nav-item:nth-child(3) a { transition-delay: 0.18s; }
+.mobile-nav-overlay.is-open .mobile-nav-item:nth-child(4) a { transition-delay: 0.23s; }
+.mobile-nav-overlay.is-open .mobile-nav-item:nth-child(5) a { transition-delay: 0.28s; }
+.mobile-nav-overlay.is-open .mobile-nav-item:nth-child(6) a { transition-delay: 0.33s; }
+
+.mobile-nav-item a:hover {
+    opacity: 0.45 !important;
+}
+
+/* ── Overlay footer — divider + social ── */
+.mobile-nav-footer {
+    position: absolute;
+    bottom: clamp(2rem, 5vh, 3rem);
+    left: clamp(2rem, 8vw, 5rem);
+    right: clamp(2rem, 8vw, 5rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(17, 17, 17, 0.1);
+    padding-top: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.4s 0.35s ease;
+}
+
+.mobile-nav-overlay.is-open .mobile-nav-footer {
+    opacity: 1;
+}
+
+.mobile-nav-footer-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    opacity: 0.4;
+}
+
+.mobile-nav-footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.mobile-nav-footer-links a {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    opacity: 0.55;
+    transition: opacity 0.2s;
+}
+
+.mobile-nav-footer-links a:hover { opacity: 1; }
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* ≤ 1024px — reduce nav padding */
+@media (max-width: 1024px) {
+    .site-header {
+        padding: 1.5rem 2rem;
+    }
+    .site-header.is-scrolled {
+        padding: 1rem 2rem;
+    }
+    .nav-group { gap: 1.5rem; }
+}
+
+/* ≤ 768px — show hamburger, hide desktop nav links */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 1.25rem 1.5rem;
+        /* 2-col: logo left, hamburger right */
+        grid-template-columns: 1fr auto;
+    }
+
+    .site-header.is-scrolled {
+        padding: 1rem 1.5rem;
+    }
+
+    /* Hide the left nav links and its grid column spacer */
+    .site-header .nav-group.left {
+        display: none;
+    }
+
+    /* Hide the right nav links (the blend header duplicates them) */
+    .site-header:not(.site-header-blend) .nav-group.right {
+        display: none;
+    }
+
+    /* Hide blend header entirely on mobile (hamburger replaces it) */
+    .site-header.site-header-blend {
+        display: none;
+    }
+
+    /* Show hamburger on main header */
+    .site-header:not(.site-header-blend) .hamburger-btn {
+        display: flex;
+    }
+
+    /* Re-align logo to left */
+    .site-header .logo {
+        justify-content: flex-start;
+    }
+
+    /* On theme-light at mobile, hamburger lines go dark */
+    .site-header.theme-light .hamburger-btn span {
+        background: #111111;
+    }
+
+    /* When overlay is open, hamburger lines go dark regardless */
+    .hamburger-btn.is-open span {
+        background: #111111;
+    }
+}
+
+/* ≤ 480px — tighter header */
+@media (max-width: 480px) {
+    .site-header {
+        padding: 1rem 1.25rem;
+    }
+}
